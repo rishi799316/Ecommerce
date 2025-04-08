@@ -1,0 +1,16 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title %}Order Confirmation - Utopia Streetwear{% endblock %}
+
+{% block content %}
+    <h1>Order Confirmation</h1>
+    <p>Thank you for your order! Your order number is {{ order.id }}.</p>
+    <p>You will receive a confirmation email with your order details shortly.</p>
+
+    <h2>Order Summary</h2>
+    <ul>
+        {% for item in order.items.all %}
+        <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Rs{{ item.product.price }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

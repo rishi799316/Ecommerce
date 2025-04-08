@@ -1,0 +1,35 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title %}Checkout - Utopia Streetwear{% endblock %}
+
+{% block content %}
+    <h1>Checkout</h1>
+    
+    <h2>Your Cart</h2>
+    <div class="cart-items">
+        {% for item in cart_items %}
+        <div class="cart-item">
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+            <h3>{{ item.product.name }}</h3>
+            <p>Rs{{ item.product.price }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+            <p>(Size: {% if item.size %}{{ item.size.name }}{% else %}N/A{% endif %})<p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <form method="post" action="{% url 'place_order' %}">
+        {% csrf_token %}
+        <div>
+            <label for="address">Delivery:</label>
+            <textarea name="address" required></textarea>
+        </div>
+
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="phone" required>
+        </div>
+
+        <button type="submit">Place Order</button>
+    </form>
+{% endblock %}

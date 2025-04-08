@@ -1,0 +1,14 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+  <h2>{{ profile.user.username }}'s Profile</h2>
+  
+  <p><strong>Username:</strong> {{ profile.user.username }}</p>
+  <p><strong>Address:</strong> {{ profile.address }}</p>
+  <p><strong>Phone:</strong> {{ profile.phone }}</p>
+
+  <a href="{% url 'edit_profile' %}">Edit Profile</a>
+  <a href="{% url 'order_history' %}">View Your Order History</a>
+
+{% endblock %}
+
